@@ -93,7 +93,7 @@ public class GeneratorsConfig extends BaseMekanismConfig {
         bioGeneration = CachedLongValue.definePositive(this, builder, GeneratorsConfigTranslations.SERVER_GENERATOR_BIO_GENERATION,
               "bioGeneration", 30L);
         bioTankCapacity = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_BIO_TANK_CAPACITY.applyToBuilder(builder)
-              .defineInRange("tankCapacity", 20, 1, Integer.MAX_VALUE));
+              .defineInRange("tankCapacity", 240, 1, Integer.MAX_VALUE));
         builder.pop();
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT.applyToBuilder(builder).push("heat_generator");
