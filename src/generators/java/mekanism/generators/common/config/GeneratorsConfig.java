@@ -98,20 +98,20 @@ public class GeneratorsConfig extends BaseMekanismConfig {
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT.applyToBuilder(builder).push("heat_generator");
         heatGeneration = CachedLongValue.definePositive(this, builder, GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT_GENERATION,
-              "heatGeneration", 5L);
+              "heatGeneration", 100L);
         heatGenerationLava = CachedLongValue.define(this, builder, GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT_GEN_LAVA,
-              "heatGenerationLava", 1L, 0, Long.MAX_VALUE / (EnumUtils.DIRECTIONS.length + 1));
+              "heatGenerationLava", 7L, 0, Long.MAX_VALUE / (EnumUtils.DIRECTIONS.length + 1));
         heatGenerationNether = CachedLongValue.definePositive(this, builder, GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT_GEN_NETHER,
               "heatGenerationNether", 10L);
         heatTankCapacity = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT_TANK_CAPACITY.applyToBuilder(builder)
-              .defineInRange("tankCapacity", 24 * FluidType.BUCKET_VOLUME, 1, Integer.MAX_VALUE));
+              .defineInRange("tankCapacity", FluidType.BUCKET_VOLUME, 1, Integer.MAX_VALUE));
         heatGenerationFluidRate = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT_FLUID_RATE.applyToBuilder(builder)
-              .define("heatGenerationFluidRate", 10, value -> value instanceof Integer i && i > 0 && i <= heatTankCapacity.getOrDefault()));
+              .define("heatGenerationFluidRate", 100, value -> value instanceof Integer i && i > 0 && i <= heatTankCapacity.getOrDefault()));
         builder.pop();
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_GAS.applyToBuilder(builder).push("gas_generator");
         gbgTankCapacity = CachedLongValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_TANK_CAPACITY.applyToBuilder(builder)
-              .defineInRange("tankCapacity", 1L * FluidType.BUCKET_VOLUME, 1, Long.MAX_VALUE));
+              .defineInRange("tankCapacity", FluidType.BUCKET_VOLUME, 1, Long.MAX_VALUE));
         etheneBurnTicks = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_BURN_TICKS.applyToBuilder(builder)
               .defineInRange("etheneBurnTicks", 2 * SharedConstants.TICKS_PER_SECOND, 1, Integer.MAX_VALUE));
         etheneDensityMultiplier = CachedDoubleValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_DENSITY.applyToBuilder(builder)
