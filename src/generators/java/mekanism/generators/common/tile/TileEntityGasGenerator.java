@@ -15,6 +15,7 @@ import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.config.listener.ConfigBasedCachedLongSupplier;
 import mekanism.common.integration.computer.SpecialComputerMethodWrapper.ComputerChemicalTankWrapper;
 import mekanism.common.integration.computer.SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper;
 import mekanism.common.integration.computer.annotation.ComputerMethod;
@@ -36,6 +37,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class TileEntityGasGenerator extends TileEntityGenerator {
 
+    /** max operations * Joules produced */
+    private static final ConfigBasedCachedLongSupplier MAX_HYDROGEN_PRODUCTION = new ConfigBasedCachedLongSupplier(() -> 256 * MekanismConfig.general.FROM_H2.get(), MekanismConfig.general.FROM_H2);
     /**
      * The tank this block is storing fuel in.
      */
@@ -126,7 +129,7 @@ public class TileEntityGasGenerator extends TileEntityGenerator {
         if (generationRate == 0L || fuelTank.isEmpty()) {
             return 0;
         }
-        long max = (long) Math.ceil(256 * (fuelTank.getStored() / (double) fuelTank.getCapacity()));
+        long max = (long) Math.ceil(MAX_HYDROGEN_PRODUCTION.getAsLong() * (fuelTank.getStored() / (double) fuelTank.getCapacity()));
         max = Math.min(maxBurnTicks * fuelTank.getStored() + burnTicks, max);
         max = Math.min(MathUtils.clampToLong(getEnergyContainer().getNeeded() / (double) generationRate), max);
         return max;

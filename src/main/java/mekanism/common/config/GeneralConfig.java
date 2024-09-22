@@ -201,7 +201,7 @@ public class GeneralConfig extends BaseMekanismConfig {
               .worldRestart()
               .define("blacklistGrandPower", false));
         FROM_H2 = CachedLongValue.define(this, builder, MekanismConfigTranslations.GENERAL_ENERGY_CONVERSION_HYDROGEN,
-              "hydrogenEnergyDensity", 200, 1, Long.MAX_VALUE / 100_000);
+              "hydrogenEnergyDensity", 2, 1, Long.MAX_VALUE / 100_000);
         maxEnergyPerSteam = CachedLongValue.definePositive(this, builder, MekanismConfigTranslations.GENERAL_ENERGY_CONVERSION_STEAM, "maxEnergyPerSteam", 10);
         builder.pop();
 
