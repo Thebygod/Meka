@@ -220,6 +220,7 @@ public class TileEntityElectrolyticSeparator extends TileEntityRecipeMachine<Ele
         recipeEnergyMultiplier = cachedRecipe == null ? 1L : cachedRecipe.getRecipe().getEnergyMultiplier();
         isMakingHydrogen = cachedRecipe != null && isHydrogenElectrolysis(cachedRecipe.getRecipe());
         energyContainer.updateEnergyPerTick();
+        energyContainer.updateMaxEnergy();
     }
 
     private static boolean isHydrogenElectrolysis(@NotNull ElectrolysisRecipe recipe) {
@@ -441,5 +442,9 @@ public class TileEntityElectrolyticSeparator extends TileEntityRecipeMachine<Ele
 
     public boolean isMakingHydrogen() {
         return isMakingHydrogen;
+    }
+
+    public int getBaselineMaxOperations() {
+        return baselineMaxOperations;
     }
 }

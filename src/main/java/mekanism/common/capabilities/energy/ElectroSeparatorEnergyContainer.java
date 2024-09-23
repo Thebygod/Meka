@@ -17,7 +17,7 @@ public class ElectroSeparatorEnergyContainer extends MachineEnergyContainer<Tile
     public static ElectroSeparatorEnergyContainer input(TileEntityElectrolyticSeparator tile, LongObjectToLongFunction<TileEntityElectrolyticSeparator> baseEnergyCalculator,
           @Nullable IContentsListener listener) {
         AttributeEnergy electricBlock = validateBlock(tile);
-        return new ElectroSeparatorEnergyContainer(electricBlock.getStorage(), electricBlock.getUsage(), notExternal, alwaysTrue, tile, baseEnergyCalculator, listener);
+        return new ElectroSeparatorEnergyContainer(electricBlock.getUsage() * 4, electricBlock.getUsage(), notExternal, alwaysTrue, tile, baseEnergyCalculator, listener);
     }
 
     private final LongObjectToLongFunction<TileEntityElectrolyticSeparator> baseEnergyCalculator;
@@ -36,10 +36,18 @@ public class ElectroSeparatorEnergyContainer extends MachineEnergyContainer<Tile
     @Override
     public void updateEnergyPerTick() {
         if (tile.isMakingHydrogen()) {
-            //Energy upgrades only increase storage
+            //Energy upgrades do nothing
             this.currentEnergyPerTick = getBaseEnergyPerTick();
         } else {
             super.updateEnergyPerTick();
+        }
+    }
+
+    @Override
+    public void updateMaxEnergy() {
+        super.updateMaxEnergy();
+        if (tile.isMakingHydrogen()) {
+            setMaxEnergy(getMaxEnergy() * tile.getBaselineMaxOperations() * 4);
         }
     }
 }
