@@ -316,6 +316,7 @@ public class TileEntityElectrolyticSeparator extends TileEntityRecipeMachine<Ele
               .setErrorsChanged(this::onErrorsChanged)
               .setCanHolderFunction(this::canFunction)
               .setActive(this::setActive)
+              .setOperationsCost(isHydrogenElectrolysis(recipe))
               .setEnergyRequirements(energyContainer::getEnergyPerTick, energyContainer)
               .setBaselineMaxOperations(() -> baselineMaxOperations)
               .setOnFinish(this::markForSave);

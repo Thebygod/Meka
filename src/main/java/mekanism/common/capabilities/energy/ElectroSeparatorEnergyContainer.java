@@ -30,11 +30,7 @@ public class ElectroSeparatorEnergyContainer extends MachineEnergyContainer<Tile
 
     @Override
     public long getBaseEnergyPerTick() {
-        long base = baseEnergyCalculator.applyAsLong(super.getBaseEnergyPerTick(), tile);
-        if (tile.isMakingHydrogen()) {
-            base = (long) (base * Math.pow(2, tile.getComponent().getUpgrades(Upgrade.SPEED)));
-        }
-        return base;
+        return baseEnergyCalculator.applyAsLong(super.getBaseEnergyPerTick(), tile);
     }
 
     @Override
