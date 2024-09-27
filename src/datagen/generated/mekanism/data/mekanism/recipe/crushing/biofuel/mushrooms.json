@@ -2,10 +2,10 @@
   "type": "mekanism:crushing",
   "input": {
     "count": 1,
-    "item": "minecraft:beetroot_seeds"
+    "tag": "c:mushrooms"
   },
   "output": {
-    "count": 2,
+    "count": 1,
     "id": "mekanism:bio_fuel"
   }
 }

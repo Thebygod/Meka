@@ -2,10 +2,10 @@
   "type": "mekanism:crushing",
   "input": {
     "count": 1,
-    "item": "minecraft:hay_block"
+    "item": "minecraft:hanging_roots"
   },
   "output": {
-    "count": 7,
+    "count": 18,
     "id": "mekanism:bio_fuel"
   }
 }

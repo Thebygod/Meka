@@ -2,10 +2,10 @@
   "type": "mekanism:crushing",
   "input": {
     "count": 1,
-    "item": "minecraft:flowering_azalea"
+    "tag": "c:seeds"
   },
   "output": {
-    "count": 7,
+    "count": 1,
     "id": "mekanism:bio_fuel"
   }
 }

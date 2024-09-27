@@ -2,10 +2,10 @@
   "type": "mekanism:crushing",
   "input": {
     "count": 1,
-    "item": "minecraft:rose_bush"
+    "tag": "c:foods/berry"
   },
   "output": {
-    "count": 5,
+    "count": 1,
     "id": "mekanism:bio_fuel"
   }
 }
