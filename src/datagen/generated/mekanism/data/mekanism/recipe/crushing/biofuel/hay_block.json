@@ -2,7 +2,7 @@
   "type": "mekanism:crushing",
   "input": {
     "count": 1,
-    "item": "minecraft:hanging_roots"
+    "item": "minecraft:hay_block"
   },
   "output": {
     "count": 18,

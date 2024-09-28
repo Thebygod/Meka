@@ -41,14 +41,6 @@ public class TileEntityBioGenerator extends TileEntityGenerator {
     @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getEnergyItem", docPlaceholder = "energy item")
     EnergyInventorySlot energySlot;
     private float lastFluidScale;
-    /**
-     * Based on 8J/t crushing cost, and 30J/t Bio generation, this leads to rates of generation (over time) of
-     * <p> 1 fuel: 1.33x Less
-     * <p> 2 fuel: 1.5x More
-     * <p> 3 fuel: 2.25x More
-     * <p>etc
-     */
-    private static final int BIO_FUEL_PER_ITEM = 40;
 
     public TileEntityBioGenerator(BlockPos pos, BlockState state) {
         super(GeneratorsBlocks.BIO_GENERATOR, pos, state);
@@ -56,9 +48,9 @@ public class TileEntityBioGenerator extends TileEntityGenerator {
 
     private static int biofuelFromItem(@NotNull ItemStack stack) {
         if (stack.is(MekanismTags.Items.FUELS_BIO)) {
-            return BIO_FUEL_PER_ITEM;
+            return MekanismGeneratorsConfig.generators.bioFuelPerItem.getAsInt();
         } else if (stack.is(MekanismTags.Items.FUELS_BLOCK_BIO)) {
-            return BIO_FUEL_PER_ITEM * 9;
+            return 9 * MekanismGeneratorsConfig.generators.bioFuelPerItem.getAsInt();
         }
         return 0;
     }

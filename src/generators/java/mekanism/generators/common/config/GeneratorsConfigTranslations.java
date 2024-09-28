@@ -20,6 +20,7 @@ public enum GeneratorsConfigTranslations implements IConfigTranslation {
 
     SERVER_GENERATOR_BIO("server.generator.bio", "Bio Generator", "Settings for configuring Bio Generators", true),
     SERVER_GENERATOR_BIO_GENERATION("server.generator.bio.gen", "Energy Generation", "Energy produced by the Bio Generator in Joules/t."),
+    SERVER_GENERATOR_BIO_FUEL_PER_ITEM("server.generator.bio.fuel_per_item", "Fluid Per Biofuel Item", "How many mB one item of Biofuel adds to the generator's tank. Effectively defines how many ticks an item burns for and the total energy output of the Biofuel item."),
     SERVER_GENERATOR_BIO_TANK_CAPACITY("server.generator.bio.tank_capacity", "Tank Capacity", "The capacity in mB of the fluid tank in the Bio Generator."),
 
     SERVER_GENERATOR_HEAT("server.generator.heat", "Heat Generator", "Settings for configuring Heat Generators", true),

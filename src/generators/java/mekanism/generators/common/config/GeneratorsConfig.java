@@ -21,6 +21,7 @@ public class GeneratorsConfig extends BaseMekanismConfig {
     public final CachedLongValue advancedSolarGeneration;
 
     public final CachedLongValue bioGeneration;
+    public final CachedIntValue bioFuelPerItem;
     public final CachedIntValue bioTankCapacity;
 
     public final CachedLongValue heatGeneration;
@@ -91,9 +92,11 @@ public class GeneratorsConfig extends BaseMekanismConfig {
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_BIO.applyToBuilder(builder).push("bio_generator");
         bioGeneration = CachedLongValue.definePositive(this, builder, GeneratorsConfigTranslations.SERVER_GENERATOR_BIO_GENERATION,
-              "bioGeneration", 30L);
+              "bioGeneration", 25L);
+        bioFuelPerItem = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_BIO_GENERATION.applyToBuilder(builder).defineInRange(
+              "bioFuelPerItem", 64, 1, Integer.MAX_VALUE));
         bioTankCapacity = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_BIO_TANK_CAPACITY.applyToBuilder(builder)
-              .defineInRange("tankCapacity", 240, 1, Integer.MAX_VALUE));
+              .defineInRange("tankCapacity", 200, 1, Integer.MAX_VALUE));
         builder.pop();
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_HEAT.applyToBuilder(builder).push("heat_generator");
