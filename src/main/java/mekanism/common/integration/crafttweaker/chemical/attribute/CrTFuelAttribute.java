@@ -33,20 +33,20 @@ public class CrTFuelAttribute {
     }
 
     /**
-     * Gets the number of ticks this fuel burns for.
+     * Gets the max mb to burn per tick
      */
     @ZenCodeType.Method
-    @ZenCodeType.Getter("burnTicks")
-    public static int getBurnTicks(ChemicalAttributes.Fuel _this) {
-        return _this.getBurnTicks();
+    @ZenCodeType.Getter("maxBurnPerTick")
+    public static int getMaxBurnPerTick(ChemicalAttributes.Fuel _this) {
+        return _this.getMaxBurnPerTick();
     }
 
     /**
      * Gets the amount of energy produced per tick of this fuel.
      */
     @ZenCodeType.Method
-    @ZenCodeType.Getter("energyPerTick")
-    public static long getEnergyPerTick(ChemicalAttributes.Fuel _this) {
-        return _this.getEnergyPerTick();
+    @ZenCodeType.Getter("maxJoulesPerTick")
+    public static long getMaxJoulesPerTick(ChemicalAttributes.Fuel _this) {
+        return _this.getMaxJoulesPerTick();
     }
 }

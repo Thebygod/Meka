@@ -51,7 +51,7 @@ public class TileEntityBioGenerator extends TileEntityGenerator {
     private static final int BIO_FUEL_PER_ITEM = 40;
 
     public TileEntityBioGenerator(BlockPos pos, BlockState state) {
-        super(GeneratorsBlocks.BIO_GENERATOR, pos, state, MekanismGeneratorsConfig.generators.bioGeneration);
+        super(GeneratorsBlocks.BIO_GENERATOR, pos, state);
     }
 
     private static int biofuelFromItem(@NotNull ItemStack stack) {

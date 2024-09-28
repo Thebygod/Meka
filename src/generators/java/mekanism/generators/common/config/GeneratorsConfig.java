@@ -9,7 +9,6 @@ import mekanism.common.config.value.CachedLongValue;
 import mekanism.common.util.EnumUtils;
 import mekanism.generators.common.content.fission.FissionReactorMultiblockData;
 import mekanism.generators.common.content.fusion.FusionReactorMultiblockData;
-import net.minecraft.SharedConstants;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.neoforged.fml.config.ModConfig.Type;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -31,8 +30,9 @@ public class GeneratorsConfig extends BaseMekanismConfig {
     public final CachedIntValue heatGenerationFluidRate;
 
     public final CachedLongValue gbgTankCapacity;
-    public final CachedIntValue etheneBurnTicks;
-    public final CachedDoubleValue etheneDensityMultiplier;
+    public final CachedIntValue etheneMaxBurnPerTick;
+    public final CachedIntValue hydrogenMaxBurnPerTick;
+    public final CachedLongValue etheneDensity;
 
     public final CachedLongValue solarGeneration;
     public final CachedIntValue turbineBladesPerCoil;
@@ -112,10 +112,12 @@ public class GeneratorsConfig extends BaseMekanismConfig {
         GeneratorsConfigTranslations.SERVER_GENERATOR_GAS.applyToBuilder(builder).push("gas_generator");
         gbgTankCapacity = CachedLongValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_TANK_CAPACITY.applyToBuilder(builder)
               .defineInRange("tankCapacity", FluidType.BUCKET_VOLUME, 1, Long.MAX_VALUE));
-        etheneBurnTicks = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_BURN_TICKS.applyToBuilder(builder)
-              .defineInRange("etheneBurnTicks", 2 * SharedConstants.TICKS_PER_SECOND, 1, Integer.MAX_VALUE));
-        etheneDensityMultiplier = CachedDoubleValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_DENSITY.applyToBuilder(builder)
-              .defineInRange("etheneDensityMultiplier", 40D, 1, Integer.MAX_VALUE));
+        etheneMaxBurnPerTick = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_MAX_BURN_PER_TICK.applyToBuilder(builder)
+              .defineInRange("etheneMaxBurnPerTick", 10, 1, Integer.MAX_VALUE));
+        etheneDensity = CachedLongValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_ETHENE_DENSITY.applyToBuilder(builder)
+              .defineInRange("etheneDensity", 8L, 1, Integer.MAX_VALUE));
+        hydrogenMaxBurnPerTick = CachedIntValue.wrap(this, GeneratorsConfigTranslations.SERVER_GENERATOR_GAS_HYDROGEN_MAX_BURN_PER_TICK.applyToBuilder(builder)
+              .defineInRange("hydrogenMaxBurnPerTick", 10, 1, Integer.MAX_VALUE));
         builder.pop();
 
         GeneratorsConfigTranslations.SERVER_GENERATOR_WIND.applyToBuilder(builder).push("wind_generator");
