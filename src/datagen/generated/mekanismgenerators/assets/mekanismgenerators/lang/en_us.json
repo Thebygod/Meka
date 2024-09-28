@@ -103,6 +103,8 @@
   "configuration.mekanismgenerators.server.fusion.water_heating_ratio.tooltip": "The fraction of the heat from the casing that is dissipated to water when water cooling is in use. Will impact max heat, and steam generation.",
   "configuration.mekanismgenerators.server.generator.bio": "Bio Generator",
   "configuration.mekanismgenerators.server.generator.bio.button": "Edit Bio Generator",
+  "configuration.mekanismgenerators.server.generator.bio.fuel_per_item": "Fluid Per Biofuel Item",
+  "configuration.mekanismgenerators.server.generator.bio.fuel_per_item.tooltip": "How many mB one item of Biofuel adds to the generator's tank. Effectively defines how many ticks an item burns for and the total energy output of the Biofuel item.",
   "configuration.mekanismgenerators.server.generator.bio.gen": "Energy Generation",
   "configuration.mekanismgenerators.server.generator.bio.gen.tooltip": "Energy produced by the Bio Generator in Joules/t.",
   "configuration.mekanismgenerators.server.generator.bio.tank_capacity": "Tank Capacity",

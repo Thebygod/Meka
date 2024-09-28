@@ -103,6 +103,8 @@
   "configuration.mekanismgenerators.server.fusion.water_heating_ratio.tooltip": "˙uoᴉʇɐɹǝuǝᵷ ɯɐǝʇs puɐ 'ʇɐǝɥ xɐɯ ʇɔɐdɯᴉ ꞁꞁᴉM ˙ǝsn uᴉ sᴉ ᵷuᴉꞁooɔ ɹǝʇɐʍ uǝɥʍ ɹǝʇɐʍ oʇ pǝʇɐdᴉssᴉp sᴉ ʇɐɥʇ ᵷuᴉsɐɔ ǝɥʇ ɯoɹɟ ʇɐǝɥ ǝɥʇ ɟo uoᴉʇɔɐɹɟ ǝɥ⟘",
   "configuration.mekanismgenerators.server.generator.bio": "ɹoʇɐɹǝuǝ⅁ oᴉᗺ",
   "configuration.mekanismgenerators.server.generator.bio.button": "ɹoʇɐɹǝuǝ⅁ oᴉᗺ ʇᴉpƎ",
+  "configuration.mekanismgenerators.server.generator.bio.fuel_per_item": "ɯǝʇI ꞁǝnɟoᴉᗺ ɹǝԀ pᴉnꞁℲ",
+  "configuration.mekanismgenerators.server.generator.bio.fuel_per_item.tooltip": "˙ɯǝʇᴉ ꞁǝnɟoᴉᗺ ǝɥʇ ɟo ʇndʇno ʎᵷɹǝuǝ ꞁɐʇoʇ ǝɥʇ puɐ ɹoɟ suɹnq ɯǝʇᴉ uɐ sʞɔᴉʇ ʎuɐɯ ʍoɥ sǝuᴉɟǝp ʎꞁǝʌᴉʇɔǝɟɟƎ ˙ʞuɐʇ s,ɹoʇɐɹǝuǝᵷ ǝɥʇ oʇ sppɐ ꞁǝnɟoᴉᗺ ɟo ɯǝʇᴉ ǝuo ᗺɯ ʎuɐɯ ʍoH",
   "configuration.mekanismgenerators.server.generator.bio.gen": "uoᴉʇɐɹǝuǝ⅁ ʎᵷɹǝuƎ",
   "configuration.mekanismgenerators.server.generator.bio.gen.tooltip": "˙ʇ/sǝꞁnoՐ uᴉ ɹoʇɐɹǝuǝ⅁ oᴉᗺ ǝɥʇ ʎq pǝɔnpoɹd ʎᵷɹǝuƎ",
   "configuration.mekanismgenerators.server.generator.bio.tank_capacity": "ʎʇᴉɔɐdɐƆ ʞuɐ⟘",
