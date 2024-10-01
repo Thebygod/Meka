@@ -43,11 +43,11 @@ public class UnitDisplayUtils {
         if (value == 0) {
             if (isShort) {
                 if (spaceBetweenSymbol) {
-                    return TextComponentUtil.build(value + " ", unit.getSymbol(false));
+                    return TextComponentUtil.build("0 ", unit.getSymbol(false));
                 }
-                return TextComponentUtil.build(value, unit.getSymbol(false));
+                return TextComponentUtil.build("0", unit.getSymbol(false));
             }
-            return TextComponentUtil.build(value, unit.getLabel(false));
+            return TextComponentUtil.build("0", unit.getLabel(false));
         }
         boolean singular = Mth.equal(value, 1);
         boolean negative = value < 0;
@@ -357,10 +357,14 @@ public class UnitDisplayUtils {
             if (spaceBetweenSymbol || !isShort) {
                 name = " " + name;
             }
-            if (isShort) {
-                return TextComponentUtil.build(rounded + name, unit.getSymbol(singular));
+            String roundedStr = Double.toString(rounded);
+            if (roundedStr.endsWith(".0")) {
+                roundedStr = roundedStr.substring(0, roundedStr.length() - 2);
             }
-            return TextComponentUtil.build(rounded + name, unit.getLabel(singular));
+            if (isShort) {
+                return TextComponentUtil.build(roundedStr + name, unit.getSymbol(singular));
+            }
+            return TextComponentUtil.build(roundedStr + name, unit.getLabel(singular));
         }
     }
 }
