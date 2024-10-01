@@ -145,8 +145,7 @@ public class TurbineMultiblockData extends MultiblockData {
             if (energyMultiplier < Mth.EPSILON) {
                 clientFlow = 0;
             } else {
-                double rate = lowerVolume * (getDispersers() * MekanismGeneratorsConfig.generators.turbineDisperserChemicalFlow.get());
-                rate = Math.min(rate, vents * MekanismGeneratorsConfig.generators.turbineVentChemicalFlow.get());
+                double rate = getMaxFlowRateDouble();
                 double proportion = stored / (double) getSteamCapacity();
                 double origRate = rate;
                 rate = Math.min(Math.min(stored, rate), (energyNeeded / energyMultiplier)) * proportion;
@@ -201,6 +200,12 @@ public class TurbineMultiblockData extends MultiblockData {
     public void updateVentData(List<VentData> vents) {
         this.ventData = vents;
         this.vents = this.ventData.size();
+    }
+
+    private double getMaxFlowRateDouble() {
+        double rate = lowerVolume * (getDispersers() * MekanismGeneratorsConfig.generators.turbineDisperserChemicalFlow.get());
+        rate = Math.min(rate, vents * MekanismGeneratorsConfig.generators.turbineVentChemicalFlow.get());
+        return rate;
     }
 
     @Override
@@ -263,15 +268,13 @@ public class TurbineMultiblockData extends MultiblockData {
     public long getMaxProduction() {
         double energyMultiplier = ((double) MekanismConfig.general.maxEnergyPerSteam.get() / TurbineValidator.MAX_BLADES)
                                   * (Math.min(blades, coils * MekanismGeneratorsConfig.generators.turbineBladesPerCoil.get()));
-        double rate = lowerVolume * (getDispersers() * MekanismGeneratorsConfig.generators.turbineDisperserChemicalFlow.get());
-        rate = Math.min(rate, vents * MekanismGeneratorsConfig.generators.turbineVentChemicalFlow.get());
+        double rate = getMaxFlowRateDouble();
         return MathUtils.clampToLong(energyMultiplier * rate);
     }
 
     @ComputerMethod
     public long getMaxFlowRate() {
-        double rate = lowerVolume * (getDispersers() * MekanismGeneratorsConfig.generators.turbineDisperserChemicalFlow.get());
-        rate = Math.min(rate, vents * MekanismGeneratorsConfig.generators.turbineVentChemicalFlow.get());
+        double rate = getMaxFlowRateDouble();
         return MathUtils.clampToLong(rate);
     }
 
