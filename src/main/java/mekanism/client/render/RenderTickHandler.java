@@ -386,8 +386,7 @@ public class RenderTickHandler {
                         for (Entry<BlockPos, BlockState> block : blocks.entrySet()) {
                             BlockPos blastingTarget = block.getKey();
                             // simulate ray tracing results for all block positions
-                            BlockHitResult currResult = new BlockHitResult(rayTraceResult.getLocation(), rayTraceResult.getDirection(), blastingTarget, rayTraceResult.isInside());
-                            if (!pos.equals(blastingTarget) && !ClientHooks.onDrawHighlight(levelRenderer, info, currResult, event.getDeltaTracker(), matrix, renderer)) {
+                            if (!pos.equals(blastingTarget) && !ClientHooks.onDrawHighlight(levelRenderer, info, rayTraceResult.withPosition(blastingTarget), event.getDeltaTracker(), matrix, renderer)) {
                                 levelRenderer.renderHitOutline(matrix, lineConsumer.get(), player, renderView.x, renderView.y, renderView.z, blastingTarget, block.getValue());
                             }
                         }
