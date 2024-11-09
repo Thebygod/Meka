@@ -1,6 +1,5 @@
 package mekanism.common.content.network.transmitter;
 
-import mekanism.api.tier.AlloyTier;
 import mekanism.api.tier.ITier;
 import mekanism.common.upgrade.transmitter.TransmitterUpgradeData;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,7 @@ public interface IUpgradeableTransmitter<DATA extends TransmitterUpgradeData> {
 
     ITier getTier();
 
-    default boolean canUpgrade(AlloyTier alloyTier) {
+    default <TIER extends ITier> boolean canUpgrade(TIER alloyTier) {
         return alloyTier.getBaseTier().ordinal() == getTier().getBaseTier().ordinal() + 1;
     }
 }
