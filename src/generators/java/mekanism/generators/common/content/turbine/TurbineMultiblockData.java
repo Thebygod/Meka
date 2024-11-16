@@ -140,7 +140,7 @@ public class TurbineMultiblockData extends MultiblockData {
 
         long energyNeeded = energyContainer.getNeeded();
         if (stored > 0 && energyNeeded > 0L) {
-            double energyMultiplier = (MekanismConfig.general.maxEnergyPerSteam.get() / (double) TurbineValidator.MAX_BLADES)
+            double energyMultiplier = (MekanismGeneratorsConfig.generators.turbineJoulesPerSteam.get() / (double) TurbineValidator.MAX_BLADES)
                                       * (Math.min(blades, coils * MekanismGeneratorsConfig.generators.turbineBladesPerCoil.get()));
             if (energyMultiplier < Mth.EPSILON) {
                 clientFlow = 0;
@@ -148,13 +148,16 @@ public class TurbineMultiblockData extends MultiblockData {
                 double rate = getMaxFlowRateDouble();
                 double proportion = stored / (double) getSteamCapacity();
                 double origRate = rate;
-                rate = Math.min(Math.min(stored, rate), (energyNeeded / energyMultiplier)) * proportion;
-                clientFlow = MathUtils.clampToLong(rate);
-                if (clientFlow > 0) {
+                rate = Math.min(Math.min(stored, rate), (energyNeeded / energyMultiplier) * MekanismGeneratorsConfig.generators.turbineSteamDivisor.getAsInt()) * proportion;
+                long amountGenerated = MathUtils.clampToLong(energyMultiplier * (rate / MekanismGeneratorsConfig.generators.turbineSteamDivisor.getAsInt()));
+                if (rate > Mth.EPSILON && amountGenerated > 0) {
+                    clientFlow = MathUtils.clampToLong(rate);
                     flowRate = rate / origRate;
-                    energyContainer.insert(MathUtils.clampToLong(energyMultiplier * rate), Action.EXECUTE, AutomationType.INTERNAL);
+                    energyContainer.insert(amountGenerated, Action.EXECUTE, AutomationType.INTERNAL);
                     chemicalTank.shrinkStack(clientFlow, Action.EXECUTE);
                     ventTank.setStack(new FluidStack(Fluids.WATER, Math.min(MathUtils.clampToInt(rate), condensers * MekanismGeneratorsConfig.generators.condenserRate.get())));
+                } else {
+                    clientFlow = 0;
                 }
             }
         } else {
@@ -259,14 +262,14 @@ public class TurbineMultiblockData extends MultiblockData {
 
     @ComputerMethod
     public long getProductionRate() {
-        double energyMultiplier = ((double) MekanismConfig.general.maxEnergyPerSteam.get() / TurbineValidator.MAX_BLADES)
+        double energyMultiplier = ((double) MekanismGeneratorsConfig.generators.turbineJoulesPerSteam.get() / TurbineValidator.MAX_BLADES)
                                   * (Math.min(blades, coils * MekanismGeneratorsConfig.generators.turbineBladesPerCoil.get()));
-        return MathUtils.clampToLong(energyMultiplier * clientFlow);
+        return MathUtils.clampToLong(energyMultiplier * clientFlow / MekanismGeneratorsConfig.generators.turbineSteamDivisor.getAsInt());
     }
 
     @ComputerMethod
     public long getMaxProduction() {
-        double energyMultiplier = ((double) MekanismConfig.general.maxEnergyPerSteam.get() / TurbineValidator.MAX_BLADES)
+        double energyMultiplier = ((double) MekanismGeneratorsConfig.generators.turbineJoulesPerSteam.get() / TurbineValidator.MAX_BLADES)
                                   * (Math.min(blades, coils * MekanismGeneratorsConfig.generators.turbineBladesPerCoil.get()));
         double rate = getMaxFlowRateDouble();
         return MathUtils.clampToLong(energyMultiplier * rate);
