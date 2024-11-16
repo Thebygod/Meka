@@ -385,7 +385,8 @@ public class RenderTickHandler {
                         Lazy<VertexConsumer> lineConsumer = Lazy.of(() -> renderer.getBuffer(RenderType.lines()));
                         for (Entry<BlockPos, BlockState> block : blocks.entrySet()) {
                             BlockPos blastingTarget = block.getKey();
-                            if (!pos.equals(blastingTarget) && !ClientHooks.onDrawHighlight(levelRenderer, info, rayTraceResult, event.getDeltaTracker(), matrix, renderer)) {
+                            // simulate ray tracing results for all block positions
+                            if (!pos.equals(blastingTarget) && !ClientHooks.onDrawHighlight(levelRenderer, info, rayTraceResult.withPosition(blastingTarget), event.getDeltaTracker(), matrix, renderer)) {
                                 levelRenderer.renderHitOutline(matrix, lineConsumer.get(), player, renderView.x, renderView.y, renderView.z, blastingTarget, block.getValue());
                             }
                         }

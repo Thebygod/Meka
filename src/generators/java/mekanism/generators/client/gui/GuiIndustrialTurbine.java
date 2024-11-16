@@ -33,6 +33,8 @@ public class GuiIndustrialTurbine extends GuiMekanismTile<TileEntityTurbineCasin
 
     public GuiIndustrialTurbine(MekanismTileContainer<TileEntityTurbineCasing> container, Inventory inv, Component title) {
         super(container, inv, title);
+        imageWidth += 14;
+        inventoryLabelX += 7;
         inventoryLabelY += 2;
         titleLabelY = 5;
         dynamicSlots = true;
@@ -41,7 +43,7 @@ public class GuiIndustrialTurbine extends GuiMekanismTile<TileEntityTurbineCasin
     @Override
     protected void addGuiElements() {
         super.addGuiElements();
-        addRenderableWidget(new GuiInnerScreen(this, 50, 18, 112, 50, () -> {
+        addRenderableWidget(new GuiInnerScreen(this, 50, 18, 126, 50, () -> {
             List<Component> list = new ArrayList<>();
             TurbineMultiblockData multiblock = tile.getMultiblock();
             if (multiblock.isFormed()) {
@@ -71,7 +73,7 @@ public class GuiIndustrialTurbine extends GuiMekanismTile<TileEntityTurbineCasin
                 }
                 return 1;
             }
-        }, 164, 16));
+        }, 178, 16));
         addRenderableWidget(new GuiVerticalRateBar(this, new IBarInfoHandler() {
             @Override
             public Component getTooltip() {
@@ -107,7 +109,7 @@ public class GuiIndustrialTurbine extends GuiMekanismTile<TileEntityTurbineCasin
             return List.of(MekanismLang.STORING.translate(storing), GeneratorsLang.PRODUCING_AMOUNT.translate(producing));
         }));
         Component warning = GeneratorsLang.TURBINE_DUMPING_STEAM_WARNING.translateColored(EnumColor.RED);
-        addRenderableWidget(new GuiGasMode(this, 159, 72, true, () -> tile.getMultiblock().dumpMode, tile.getBlockPos(), 0,
+        addRenderableWidget(new GuiGasMode(this, 173, 72, true, () -> tile.getMultiblock().dumpMode, tile.getBlockPos(), 0,
               TooltipUtils.create(GeneratorsLang.TURBINE_DUMPING_EXCESS_STEAM.translate(), warning),
               TooltipUtils.create(GeneratorsLang.TURBINE_DUMPING_STEAM.translate(), warning)));
     }
@@ -115,7 +117,7 @@ public class GuiIndustrialTurbine extends GuiMekanismTile<TileEntityTurbineCasin
     @Override
     protected void drawForegroundText(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
         renderTitleText(guiGraphics);
-        drawString(guiGraphics, playerInventoryTitle, inventoryLabelX, inventoryLabelY, titleTextColor());
+        renderInventoryText(guiGraphics, 99);
         super.drawForegroundText(guiGraphics, mouseX, mouseY);
     }
 }
