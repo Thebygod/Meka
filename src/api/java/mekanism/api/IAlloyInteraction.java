@@ -19,5 +19,5 @@ public interface IAlloyInteraction {
      * @param stack  - the stack of alloy being right-clicked
      * @param tier   - the tier of the alloy
      */
-    <TIER extends ITier> void onAlloyInteraction(Player player, ItemStack stack, @NotNull TIER tier);
+    void onAlloyInteraction(Player player, ItemStack stack, @NotNull ITier tier);
 }

@@ -322,7 +322,7 @@ public abstract class TileEntityTransmitter extends CapabilityTileEntity impleme
     }
 
     @Override
-    public <TIER extends ITier> void onAlloyInteraction(Player player, ItemStack stack, @NotNull TIER tier) {
+    public void onAlloyInteraction(Player player, ItemStack stack, @NotNull ITier tier) {
         if (getLevel() != null && getTransmitter().hasTransmitterNetwork()) {
             DynamicNetwork<?, ?, ?> transmitterNetwork = getTransmitter().getTransmitterNetwork();
             List<Transmitter<?, ?, ?>> list = new ArrayList<>(transmitterNetwork.getTransmitters());

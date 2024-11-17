@@ -14,7 +14,7 @@ public interface IUpgradeableTransmitter<DATA extends TransmitterUpgradeData> {
 
     ITier getTier();
 
-    default <TIER extends ITier> boolean canUpgrade(TIER alloyTier) {
+    default boolean canUpgrade(ITier alloyTier) {
         return alloyTier.getBaseTier().ordinal() == getTier().getBaseTier().ordinal() + 1;
     }
 }
