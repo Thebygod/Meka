@@ -5,6 +5,7 @@ import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.base.ProfilerConstants;
 import mekanism.common.content.network.EnergyNetwork;
+import mekanism.common.content.network.transmitter.Transmitter;
 import mekanism.common.content.network.transmitter.UniversalCable;
 import mekanism.common.tile.transmitter.TileEntityUniversalCable;
 import net.minecraft.client.renderer.LightTexture;
@@ -24,11 +25,23 @@ public class RenderUniversalCable extends RenderTransmitterBase<TileEntityUniver
     @Override
     protected void render(TileEntityUniversalCable tile, float partialTick, PoseStack matrix, MultiBufferSource renderer, int light, int overlayLight,
           ProfilerFiller profiler) {
-        EnergyNetwork network = tile.getTransmitter().getTransmitterNetwork();
+
+        UniversalCable cable = tile.getTransmitter();
+        if (cable == null || !cable.hasTransmitterNetwork())
+        {
+            return;
+        }
+
+        EnergyNetwork network = cable.getTransmitterNetwork();
+        if (network == null)
+        {
+            return;
+        }
+
         matrix.pushPose();
         matrix.translate(0.5, 0.5, 0.5);
         renderModel(tile, matrix, renderer.getBuffer(Sheets.translucentCullBlockSheet()), 0xFFFFFF, network.currentScale, LightTexture.FULL_BRIGHT,
-              overlayLight, MekanismRenderer.energyIcon);
+            overlayLight, MekanismRenderer.energyIcon);
         matrix.popPose();
     }
 

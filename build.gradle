@@ -399,6 +399,7 @@ repositories { RepositoryHandler handler ->
     exclusiveRepo(handler, 'https://modmaven.dev/', 'appeng', 'mcjty.theoneprobe')
     exclusiveRepo(handler, 'https://maven.thiakil.com', 'com.thiakil')
     exclusiveRepo(handler, 'https://maven.parchmentmc.org/', 'org.parchmentmc.data')
+    exclusiveRepo(handler, 'https://thedarkcolour.github.io/KotlinForForge/', 'thedarkcolour')
 }
 
 test {
@@ -465,6 +466,11 @@ dependencies {
     datagenMainRuntimeOnly fg.deobf("curse.maven:projecte-226410:${projecte_id}")
 
     datagenNonMod "com.thiakil:yaml-ops:${yamlops_version}"
+
+    //kotlinforforge is a dependency of Valkyrien Skies
+    runtimeOnly(fg.deobf("thedarkcolour:kotlinforforge:${kotlin_for_forge_version}"))
+    runtimeOnly(fg.deobf("curse.maven:valkyrien-skies-258371:${valkyrien_skies_mod_id}"))
+    runtimeOnly(fg.deobf("curse.maven:eureka-ships-654384:${eureka_mod_id}"))
 }
 
 def getManifestAttributes(String title) {
