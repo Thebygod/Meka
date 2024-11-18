@@ -44,10 +44,12 @@ public abstract class MekanismTileEntityRenderer<TILE extends BlockEntity> imple
     @Override
     public void render(TILE tile, float partialTick, PoseStack matrix, MultiBufferSource renderer, int light, int overlayLight) {
         if (tile.getLevel() != null) {
-            ProfilerFiller profiler = tile.getLevel().getProfiler();
-            profiler.push(getProfilerSection());
-            render(tile, partialTick, matrix, renderer, light, overlayLight, profiler);
-            profiler.pop();
+            if (this.shouldRender(tile, getCamera().getPosition())) {
+                ProfilerFiller profiler = tile.getLevel().getProfiler();
+                profiler.push(getProfilerSection());
+                render(tile, partialTick, matrix, renderer, light, overlayLight, profiler);
+                profiler.pop();
+            }
         }
     }
 

@@ -26,18 +26,7 @@ public class RenderUniversalCable extends RenderTransmitterBase<TileEntityUniver
     protected void render(TileEntityUniversalCable tile, float partialTick, PoseStack matrix, MultiBufferSource renderer, int light, int overlayLight,
           ProfilerFiller profiler) {
 
-        UniversalCable cable = tile.getTransmitter();
-        if (cable == null || !cable.hasTransmitterNetwork())
-        {
-            return;
-        }
-
-        EnergyNetwork network = cable.getTransmitterNetwork();
-        if (network == null)
-        {
-            return;
-        }
-
+        EnergyNetwork network = tile.getTransmitter().getTransmitterNetwork();
         matrix.pushPose();
         matrix.translate(0.5, 0.5, 0.5);
         renderModel(tile, matrix, renderer.getBuffer(Sheets.translucentCullBlockSheet()), 0xFFFFFF, network.currentScale, LightTexture.FULL_BRIGHT,
