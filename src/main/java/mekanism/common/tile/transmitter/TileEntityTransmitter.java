@@ -7,8 +7,8 @@ import mekanism.api.IAlloyInteraction;
 import mekanism.api.IConfigurable;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.api.text.EnumColor;
-import mekanism.api.tier.AlloyTier;
 import mekanism.api.tier.BaseTier;
+import mekanism.api.tier.ITier;
 import mekanism.client.model.data.TransmitterModelData;
 import mekanism.common.Mekanism;
 import mekanism.common.MekanismLang;
@@ -322,7 +322,7 @@ public abstract class TileEntityTransmitter extends CapabilityTileEntity impleme
     }
 
     @Override
-    public void onAlloyInteraction(Player player, ItemStack stack, @NotNull AlloyTier tier) {
+    public void onAlloyInteraction(Player player, ItemStack stack, @NotNull ITier tier) {
         if (getLevel() != null && getTransmitter().hasTransmitterNetwork()) {
             DynamicNetwork<?, ?, ?> transmitterNetwork = getTransmitter().getTransmitterNetwork();
             List<Transmitter<?, ?, ?>> list = new ArrayList<>(transmitterNetwork.getTransmitters());
