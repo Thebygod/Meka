@@ -732,6 +732,9 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
         for (ITileComponent component : components) {
             component.read(nbt, provider);
         }
+        if (supportsUpgrades()) {
+            recalculateUpgrades(Upgrade.SPEED);//force buffer to update
+        }
         readSustainedData(provider, nbt);
         for (ContainerType<?, ?, ?> type : ContainerType.TYPES) {
             if (type.canHandle(this) && persists(type)) {
@@ -1159,13 +1162,14 @@ public abstract class TileEntityMekanism extends CapabilityTileEntity implements
             for (IEnergyContainer energyContainer : getEnergyContainers(null)) {
                 if (energyContainer instanceof MachineEnergyContainer<?> machineEnergy) {
                     machineEnergy.updateEnergyPerTick();
+                    machineEnergy.updateMaxEnergy();
                 }
             }
         } else if (upgrade == Upgrade.ENERGY) {
             for (IEnergyContainer energyContainer : getEnergyContainers(null)) {
                 if (energyContainer instanceof MachineEnergyContainer<?> machineEnergy) {
-                    machineEnergy.updateMaxEnergy();
                     machineEnergy.updateEnergyPerTick();
+                    machineEnergy.updateMaxEnergy();
                 }
             }
         }

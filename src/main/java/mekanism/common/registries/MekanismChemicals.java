@@ -6,16 +6,14 @@ import java.util.Map;
 import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalBuilder;
 import mekanism.api.chemical.attribute.ChemicalAttributes.CooledCoolant;
-import mekanism.api.chemical.attribute.ChemicalAttributes.Fuel;
 import mekanism.api.chemical.attribute.ChemicalAttributes.HeatedCoolant;
 import mekanism.api.chemical.attribute.ChemicalAttributes.Radiation;
 import mekanism.api.providers.IChemicalProvider;
 import mekanism.api.text.EnumColor;
 import mekanism.common.ChemicalConstants;
 import mekanism.common.Mekanism;
-import mekanism.common.config.MekanismConfig;
-import mekanism.common.registration.impl.DeferredChemical;
 import mekanism.common.registration.impl.ChemicalDeferredRegister;
+import mekanism.common.registration.impl.DeferredChemical;
 import mekanism.common.registration.impl.SlurryRegistryObject;
 import mekanism.common.resource.PrimaryResource;
 import mekanism.common.util.EnumUtils;
@@ -36,7 +34,7 @@ public class MekanismChemicals {
     public static final DeferredChemical<Chemical> REDSTONE = CHEMICALS.registerInfuse("redstone", 0xB30505);
     public static final DeferredChemical<Chemical> CARBON = CHEMICALS.registerInfuse("carbon", 0x2C2C2C);
 
-    public static final DeferredChemical<Chemical> HYDROGEN = CHEMICALS.registerGas(ChemicalConstants.HYDROGEN, new Fuel(() -> 1, MekanismConfig.general.FROM_H2));
+    public static final DeferredChemical<Chemical> HYDROGEN = CHEMICALS.registerGas(ChemicalConstants.HYDROGEN);
     public static final DeferredChemical<Chemical> OXYGEN = CHEMICALS.registerGas(ChemicalConstants.OXYGEN);
     public static final DeferredChemical<Chemical> STEAM = CHEMICALS.register("steam", () -> new Chemical(ChemicalBuilder.builder(Mekanism.rl("liquid/steam")).gaseous()));
     public static final DeferredChemical<Chemical> WATER_VAPOR = CHEMICALS.register("water_vapor", () -> new Chemical(ChemicalBuilder.builder(Mekanism.rl("liquid/steam")).gaseous()));

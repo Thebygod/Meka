@@ -20,6 +20,7 @@ public enum GeneratorsConfigTranslations implements IConfigTranslation {
 
     SERVER_GENERATOR_BIO("server.generator.bio", "Bio Generator", "Settings for configuring Bio Generators", true),
     SERVER_GENERATOR_BIO_GENERATION("server.generator.bio.gen", "Energy Generation", "Energy produced by the Bio Generator in Joules/t."),
+    SERVER_GENERATOR_BIO_FUEL_PER_ITEM("server.generator.bio.fuel_per_item", "Fluid Per Biofuel Item", "How many mB one item of Biofuel adds to the generator's tank. Effectively defines how many ticks an item burns for and the total energy output of the Biofuel item."),
     SERVER_GENERATOR_BIO_TANK_CAPACITY("server.generator.bio.tank_capacity", "Tank Capacity", "The capacity in mB of the fluid tank in the Bio Generator."),
 
     SERVER_GENERATOR_HEAT("server.generator.heat", "Heat Generator", "Settings for configuring Heat Generators", true),
@@ -36,10 +37,12 @@ public enum GeneratorsConfigTranslations implements IConfigTranslation {
 
     SERVER_GENERATOR_GAS("server.generator.gas", "Gas-Burning Generator", "Settings for configuring Gas-Burning Generators", true),
     SERVER_GENERATOR_GAS_TANK_CAPACITY("server.generator.gas.tank_capacity", "Tank Capacity", "The capacity in mB of the chemical tank in the Gas-Burning Generator."),
-    SERVER_GENERATOR_GAS_ETHENE_BURN_TICKS("server.generator.gas.ethene.burn_ticks", "Ethene Burn Ticks",
-          "The number of ticks each mB of Ethene burns for in the Gas-Burning Generator."),
-    SERVER_GENERATOR_GAS_ETHENE_DENSITY("server.generator.gas.ethene.density", "Ethene Energy Density Multiplier",
-          "Multiplier for calculating the energy density of Ethene (1 mB Hydrogen + 2 * bioGeneration * densityMultiplier)."),
+    SERVER_GENERATOR_GAS_ETHENE_MAX_BURN_PER_TICK("server.generator.gas.ethene.max_per_tick", "Max Ethene Burned per Tick",
+          "Maximum mB of Ethene to burn in a tick (when tank full). A fraction of this will be burned at maximum each tick depending on how full the fuel tank is."),
+    SERVER_GENERATOR_GAS_HYDROGEN_MAX_BURN_PER_TICK("server.generator.gas.hydrogen.max_per_tick", "Max Hydrogen Burned per Tick",
+          "Maximum mB of Hydrogen to burn in a tick (when tank full). A fraction of this will be burned at maximum each tick depending on how full the fuel tank is."),
+    SERVER_GENERATOR_GAS_ETHENE_DENSITY("server.generator.gas.ethene.density2", "Ethene Energy Density",
+          "How many Joules should 1mB of Ethene generate."),
 
     SERVER_GENERATOR_WIND("server.generator.wind", "Wind Generator", "Settings for configuring Wind Generators", true),
     SERVER_GENERATOR_WIND_GEN_MIN("server.generator.wind.gen.min", "Min Energy Generation", "Minimum energy generation in Joules/t that the Wind Generator can produce."),
@@ -59,6 +62,8 @@ public enum GeneratorsConfigTranslations implements IConfigTranslation {
           "Amount of energy in Joules that each block of the turbine contributes to the total energy capacity. Max = volume * energyCapacityPerVolume"),
     SERVER_TURBINE_CHEMICAL_CAPACITY("server.turbine.capacity.chemical", "Chemical Per Tank",
           "Amount of chemical (mB) that each block of the turbine's steam cavity contributes to the volume. Max = volume * chemicalPerTank"),
+    SERVER_TURBINE_JOULES_PER_STEAM("server.turbine.energy_conversion.steam", "Joules Per Steam", "Maximum Joules per tick generated per Steam unit in the Industrial Turbine."),
+    SERVER_TURBINE_STEAM_DIVISOR("server.turbine.energy_conversion.steam_divisor", "Steam Divisor", "Divisor for Steam rate to create a Steam unit. The Steam flow will be divided by this amount and then multiplied by the Joules Per Steam amount to calculate the generation rate."),
 
     SERVER_FISSION("server.fission", "Fission Reactor", "Settings for configuring Fission Reactors", "Edit Reactor Settings"),
     SERVER_FISSION_FUEL_ENERGY("server.fission.fuel_energy", "Energy Per Fissile Fuel",

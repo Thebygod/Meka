@@ -138,7 +138,7 @@ class PressurizedReactionRecipeProvider implements ISubRecipeProvider {
                     IngredientCreatorAccess.chemicalStack().from(MekanismChemicals.OXYGEN, 10),
                     60,
                     MekanismItems.HDPE_PELLET.getItemStack()
-              ).energyRequired(1_000)
+              ).energyRequired(10)
               .build(consumer, Mekanism.rl(basePath + "ethene_oxygen"));
         //Water + ethene
         PressurizedReactionRecipeBuilder.reaction(
@@ -148,7 +148,7 @@ class PressurizedReactionRecipeProvider implements ISubRecipeProvider {
                     400,
                     MekanismItems.SUBSTRATE.getItemStack(8),
                     MekanismChemicals.OXYGEN.getStack(10)
-              ).energyRequired(200)
+              ).energyRequired(2)
               .build(consumer, Mekanism.rl(basePath + "water_ethene"));
         //Water + hydrogen
         PressurizedReactionRecipeBuilder.reaction(
@@ -157,7 +157,7 @@ class PressurizedReactionRecipeProvider implements ISubRecipeProvider {
               IngredientCreatorAccess.chemicalStack().from(MekanismChemicals.HYDROGEN, 100),
               100,
               MekanismItems.SUBSTRATE.getItemStack(),
-              MekanismChemicals.ETHENE.getStack(100)
+              MekanismChemicals.ETHENE.getStack(300)
         ).build(consumer, Mekanism.rl(basePath + "water_hydrogen"));
     }
 }
