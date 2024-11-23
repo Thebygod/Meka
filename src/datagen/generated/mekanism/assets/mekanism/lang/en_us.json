@@ -2297,6 +2297,7 @@
   "gui.mekanism.issues.no_recipe": " - No matching recipe or not enough input",
   "gui.mekanism.issues.no_space": " - Not enough room in output",
   "gui.mekanism.issues.no_space.overflow": " - Not enough room in output, overflow stored in internal buffer",
+  "gui.mekanism.issues.redstone_prevents_activation": " - Redstone conditions not met",
   "gui.mekanism.jitter": "Jitter: %1$s%%",
   "gui.mekanism.liquid": "Liquid: %1$s",
   "gui.mekanism.max": "Max: %1$s",
